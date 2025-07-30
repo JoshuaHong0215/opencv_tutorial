@@ -16,5 +16,3 @@ cv2.putText(blended, 'TARGET', (220, 250), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 2
 cv2.imshow('test', blended)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-# dlrjtdmads

@@ -1,5 +1,5 @@
 # BGR 값을 YUV로 변환 (bgr2yuv.py)
-# test
+
 import cv2
 import numpy as np
 
