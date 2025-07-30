@@ -27,7 +27,7 @@ while True:
 
     # [1] 중앙 세로 ROI 설정
     h, w = frame.shape[:2]
-    roi_x1, roi_x2 = w // 2 - 100, w // 2 + 100
+    roi_x1, roi_x2 = w // 2 - 300, w // 2 + 300
     roi = frame[50:, roi_x1:roi_x2]  # 세로 전체, 가로 100px
 
     # [2] ROI를 Grayscale로 변환 + Threshold 이진화
