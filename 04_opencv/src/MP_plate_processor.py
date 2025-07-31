@@ -53,6 +53,9 @@ def onMouse(event, x, y, flags, param):  # 마우스 이벤트 콜백 함수 구
             clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
             enhanced = clahe.apply(gray_result)
 
+            # Canny Edge 적용
+            edges = cv2.Canny(enhanced, 100, 200)
+
             # 적응형 임계 처리
             thresh = cv2.adaptiveThreshold(
                 enhanced,
@@ -63,22 +66,39 @@ def onMouse(event, x, y, flags, param):  # 마우스 이벤트 콜백 함수 구
                 2
             )
 
-            # matplotlib으로 이미지 한 번에 출력
-            fig, axes = plt.subplots(1, 5, figsize=(18, 5))
-            titles = ['Original', 'Warped', 'Grayscale', 'CLAHE', 'Thresholded']
-            images = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB),
-                      cv2.cvtColor(result, cv2.COLOR_BGR2RGB),
-                      gray_result,
-                      enhanced,
-                      thresh]
+            # 윤곽선 검출
+            contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-            for i in range(5):
-                axes[i].imshow(images[i], cmap='gray' if i >= 2 else None)
+            # 윤곽선 그리기용 이미지 복사
+            contour_result = cv2.cvtColor(thresh, cv2.COLOR_GRAY2BGR)
+
+            # 모든 윤곽선 그리기
+            cv2.drawContours(contour_result, contours, -1, (0, 255, 0), 1)
+            
+            # matplotlib으로 이미지 한 번에 출력
+            titles = ['Original', 'Warped', 'Grayscale', 'CLAHE', 'Thresholded', 'Contours']
+            images = [
+                cv2.cvtColor(img, cv2.COLOR_BGR2RGB),
+                cv2.cvtColor(result, cv2.COLOR_BGR2RGB),
+                gray_result,
+                enhanced,
+                thresh,
+                cv2.cvtColor(contour_result, cv2.COLOR_BGR2RGB)
+            ]
+
+            fig, axes = plt.subplots(1, len(images), figsize=(20, 5))
+            for i in range(len(images)):
+                cmap = 'gray' if i in [2, 3, 4] else None
+                axes[i].imshow(images[i], cmap=cmap)
                 axes[i].set_title(titles[i], fontsize=12)
                 axes[i].axis('off')
 
             plt.tight_layout()
             plt.show()
+
+
+
+
 
             # # 저장 경로 처리
             # save_dir = "../extracted_plates"              # 절대경로 지정 함
