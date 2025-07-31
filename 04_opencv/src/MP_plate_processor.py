@@ -4,7 +4,7 @@ import datetime
 import os
 
 win_name = "scanning"
-img = cv2.imread('../img/car_02.jpg')
+img = cv2.imread('../img/car_05.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
@@ -55,6 +55,13 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
 
             # 그레이스케일 변환
             gray_result = cv2.cvtColor(result, cv2.COLOR_BGR2GRAY)
+            cv2.imshow('gray_scanned', gray_result)
+            
+            # CLAHE적용(대비 향상)
+            clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+            enhanced = clahe.apply(gray)
+            cv2.imshow('Enhanced', enhanced)
+
 
             # # 저장 경로 처리
             # save_dir = "../extracted_plates"              # 절대경로 지정 함
@@ -74,7 +81,7 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             #     print("저장실패")
 
 
-cv2.imshow(win_name, gray_result)
+
 cv2.imshow(win_name, img)
 cv2.setMouseCallback(win_name, onMouse)    # 마우스 콜백 함수를 GUI 윈도우에 등록 --- 4
 cv2.waitKey(0)
