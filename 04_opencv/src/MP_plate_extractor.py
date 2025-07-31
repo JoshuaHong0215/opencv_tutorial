@@ -4,7 +4,8 @@ import datetime
 import os
 
 win_name = "scanning"
-img = cv2.imread('../img/car_01.jpg')
+img = cv2.imread('../img/car_02.jpg')
+
 rows, cols = img.shape[:2]
 draw = img.copy()
 pts_cnt = 0
@@ -50,14 +51,14 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             cv2.imshow('scanned', result)
 
             # 저장 경로 처리
-            save_dir = "../extracted_plates"
+            save_dir = "../extracted_plates"              # 절대경로 지정 함
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
             # 저장 설정 
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename =  f"../extracted_plates/plate_{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
-
+            filename =  f"../extracted_plates/plate_{timestamp}.png"  # 여기서도 save_dir과 똑같은 경로로 설정할것 
+                                                                      # .png, .jpg등 확장자명도 변경 가능
             success = cv2.imwrite(filename, result)
 
             if success:
