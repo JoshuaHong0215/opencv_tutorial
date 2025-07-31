@@ -49,6 +49,11 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             result = cv2.warpPerspective(img, mtrx, (width, height))
             cv2.imshow('scanned', result)
 
+            # 저장 경로 처리
+            save_dir = "extracted_plates"
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
+
             # 저장 설정 
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             filename =  f"extracted_plates/plate_{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
@@ -61,10 +66,7 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             else:
                 print("저장실패")
 
-            # 저장 경로 처리
-            save_dir = "extracted_plates"
-            if not os.path.exists(save_dir):
-                os.makedirs(save_dir)
+
 
 cv2.imshow(win_name, img)
 cv2.setMouseCallback(win_name, onMouse)    # 마우스 콜백 함수를 GUI 윈도우에 등록 --- 4
