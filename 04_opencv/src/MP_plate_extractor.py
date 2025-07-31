@@ -56,7 +56,7 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
 
             # 저장 설정 
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename =  f"../extracted_plates/{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
+            filename =  f"../extracted_plates/plate_{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
 
             success = cv2.imwrite(filename, result)
 
