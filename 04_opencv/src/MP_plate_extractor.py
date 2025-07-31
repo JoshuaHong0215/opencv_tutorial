@@ -50,13 +50,13 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             cv2.imshow('scanned', result)
 
             # 저장 경로 처리
-            save_dir = "../04_opencv/extracted_plates"
+            save_dir = "../extracted_plates"
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
             # 저장 설정 
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename =  f"extracted_plates/{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
+            filename =  f"../extracted_plates/{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
 
             success = cv2.imwrite(filename, result)
 
