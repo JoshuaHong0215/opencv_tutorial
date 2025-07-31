@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+import datetime
+import os
 
 win_name = "scanning"
 img = cv2.imread('../img/car_05.jpg')
@@ -46,6 +48,24 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             # 원근 변환 적용
             result = cv2.warpPerspective(img, mtrx, (width, height))
             cv2.imshow('scanned', result)
+
+            # 저장 설정 
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename =  f"extracted_plates/plate_{timestamp}.png"  # 확장자명 jpg이나 수정할 수 있나??
+
+            success = cv2.imwrite(filename, result)
+
+            if success:
+                print(f'번호판 저장완료: {filename}')
+                cv2.imshow('Extracted Plate', result)
+            else:
+                print("저장실패")
+
+            # 저장 경로 처리
+            save_dir = "extracted_plates"
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
+
 cv2.imshow(win_name, img)
 cv2.setMouseCallback(win_name, onMouse)    # 마우스 콜백 함수를 GUI 윈도우에 등록 --- 4
 cv2.waitKey(0)
