@@ -62,6 +62,17 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             enhanced = clahe.apply(gray)
             cv2.imshow('Enhanced', enhanced)
 
+            # 적응형 임계 처리
+            thresh = cv2.adaptiveThreshold(
+                enhanced,
+                255,
+                cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                cv2.THRESH_BINARY,
+                11,
+                2
+            )
+            cv2.imshow('Thresholded', thresh)
+
 
             # # 저장 경로 처리
             # save_dir = "../extracted_plates"              # 절대경로 지정 함
