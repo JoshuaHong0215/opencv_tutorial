@@ -26,7 +26,7 @@ for d in decoded:
     text = '%s (%s)' % (barcode_data, barcode_type)
 
     cv2.rectangle(img ,(d.rect[0], d.rect[1]), (d.rect[0] + d.rect[2], d.rect[1] + d.rect[3]), (0, 255, 0), 20)
-    cv2.putText(img, text, (d.rect[0], d.rect[3]), cv2.FONT_HERSHEY_SIMPLEX, 10, (0, 255, 255), 3, cv2.LINE_AA)
+    cv2.putText(img, text, (d.rect[0], d.rect[0]), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 0, 255), 15, cv2.LINE_AA)
 
 plt.imshow(img)
 plt.show()
