@@ -1,3 +1,5 @@
+# 평균 필터를 생성하여 블러 적용
+
 import cv2
 import numpy as np
 
