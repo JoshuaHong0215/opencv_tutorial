@@ -6,7 +6,7 @@
 **따라서 추후 반드시 코드의 흐름과 작용방식을 이해해야함**
 
 ## 단계별 설명
----
+
 step_01(photo.py)
 - 캘리브레이션 base 사진촬영
 - step_01와 02는 카메라와 렌즈의 왜곡 Parameter를 얻기 위함
@@ -20,7 +20,6 @@ step_03 (scanArucoMarker2.py)
 
 step_04 (distanceDetection2.py)
 - 거리에 따라 경고문구, 혹은 경고음을 출력한다
----
 
 ---
 
