@@ -58,7 +58,7 @@ def onMouse(event, x, y, flags, param):  #마우스 이벤트 콜백 함수 구�
             # 저장 설정 
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             filename =  f"../extracted_plates/plate_{timestamp}.png"  # 여기서도 save_dir과 똑같은 경로로 설정할것 
-                                                                      # .png, .jpg등 확장자명도 변경 가능
+                                                                      # .png, .jpg등 확장자명도 변경
             success = cv2.imwrite(filename, result)
 
             if success:
