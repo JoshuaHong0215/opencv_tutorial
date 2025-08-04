@@ -8,8 +8,10 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # 8x8 크기로 축소 ---①
 gray = cv2.resize(gray, (16,16))
+
 # 영상의 평균값 구하기 ---②
 avg = gray.mean()
+
 # 평균값을 기준으로 0과 1로 변환 ---③
 bin = 1 * (gray > avg)
 print(bin)
