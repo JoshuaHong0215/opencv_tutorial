@@ -108,6 +108,9 @@ cap.release()
 
 
 if qImg is not None:
+
+    # 검색에 소요된 시간측정
+    # 이 부분이 앞에 나온 이유는 result = serch(qImg)의 반복으로 인해 책 검사를 3번 반복하는 이슈 발생
     start_time = time.time()
     results = serch(qImg)
     serch_time = time.time()-start_time
