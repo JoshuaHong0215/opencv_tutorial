@@ -2,11 +2,11 @@ import cv2, numpy as np
 
 img1 = None
 win_name = 'Camera Matching'
-MIN_MATCH = 10                     # 최소 매칭점으로 매칭된 특징점이 10개 이상이어야 유의미한 비교로 간주함 10개 이하는 매칭 실패로 간주
+MIN_MATCH = 20                     # 최소 매칭점으로 매칭된 특징점이 10개 이상이어야 유의미한 비교로 간주함 10개 이하는 매칭 실패로 간주
 
 # ORB 검출기 생성
 # ORB는 이미지에서 특정점을 찾는 알고리즘
-detector = cv2.ORB_create(1000)    # 1000이라는 숫자는 최대 1000개의 keypoints를 추출하도록 설정한 것
+detector = cv2.ORB_create(2000)    # 1000이라는 숫자는 최대 1000개의 keypoints를 추출하도록 설정한 것
 
 # Flann 추출기 생성
 # Flann 두 이미지의 특징점을 빠르게 매칭
