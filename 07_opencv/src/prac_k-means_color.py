@@ -10,7 +10,7 @@ import cv2
 K = 16
 
 img = cv2.imread('../img/load_line.jpg')
-img = cv2.resize(img, (10,10))
+img = cv2.resize(img, (6,6))
 
 # np.float32는 데이터 평균을 구할때 소숫점 이하값을 가질 수 있음으로 변환
 data = img.reshape((-1, 3)).astype(np.float32)
