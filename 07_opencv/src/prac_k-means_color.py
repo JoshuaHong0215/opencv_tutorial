@@ -27,11 +27,20 @@ center = np.uint8(center)
 print(center)
 
 # 각 레이블에 해당하는 중심값으로 픽셀 값 선택
-
 res = center[label.flatten()]
 
 # 원본 영상의 형태로 변환
 res = res.reshape((img.shape))
+
+# 클러스터별 픽셀 수 세기
+counts = np.bincount(label.flatten())
+ratios = counts / counts.sum()
+
+# BGR + 비율출력
+print("== 대표 색상(BGR) 및 비율 ==")
+for i, (bgr, ratio) in enumerate(zip(center, ratios)):
+    print(f'클러스터 {i}: 색상 BGR = {bgr}, 비율 = {ratio*100:.2f}%')
+
 
 # 결과 출력
 merged = np.hstack((img, res))
