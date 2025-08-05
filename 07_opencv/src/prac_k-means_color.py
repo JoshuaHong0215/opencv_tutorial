@@ -47,7 +47,20 @@ for i, (bgr, ratio) in enumerate(zip(center, ratios)):
 
 
 
+# matplotlib으로 모든 결과를 시각화함
+# fig : 전체 도화지(figure)
+# axs : subplot(세부그래프)의 배열
+# axs[0] : 첫 번째 그래프
+# axs[1] : 두 번째 그래프(색상 팔레트)
+# axs[0] : 세 번째 그래프(비율 바 차트)
 
+# plt.subplot() : 단순하고 빠르지만 동시에 여러 그래프를 다루기 어려움
+# fig, axs = plt.subplot() : 그래프를 객체화해서 각각 개별 제어 가능
+
+
+# 3 : 행(row) 갯수 -> 세로로 3개의 그래프 영역 생성
+# 1 : 열(column) 갯수 -> 한 줄에 하나씩만 표시하겠다라는 뜻
+# (8, 10) : 전체 그림의 크기로서 가로 8인치, 세로 10인치 영역을 주겠다는 뜻
 fig, axs = plt.subplots(3, 1, figsize=(8, 10))
 
 # 1. 원본 vs KMeans 이미지 출력
