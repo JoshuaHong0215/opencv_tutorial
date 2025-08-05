@@ -5,6 +5,7 @@
 
 import numpy as np
 import cv2
+import matplotlib.pyplot as plt
 
 # 군집화 갯수
 K = 4
@@ -36,10 +37,31 @@ res = res.reshape((img.shape))
 counts = np.bincount(label.flatten())
 ratios = counts / counts.sum()
 
+# BGR -> RGB 변환 (matplotlib은 RGB를 사용한다)
+center_rgb = center[:, ::-1]  # BGR -> RGB
+
 # BGR + 비율출력
 print("== 대표 색상(BGR) 및 비율 ==")
 for i, (bgr, ratio) in enumerate(zip(center, ratios)):
     print(f'클러스터 {i}: 색상 BGR = {bgr}, 비율 = {ratio*100:.2f}%')
+
+# 색상 팔레트
+plt.figure(figsize=(8, 2))
+for i in range(K):
+    plt.bar(i, 1, color=center_rgb[i]/255.0)
+plt.xticks(range(K), [f"{int(ratios[i]*100)}%" for i in range(K)])
+plt.title("Color Palette (Proportions)")
+plt.axis('off')
+plt.show()
+
+# 비율 막대 그래프
+plt.figure(figsize=(6, 4))
+bars = plt.bar(range(K), ratios * 100, color=center_rgb/255.0)
+plt.xticks(range(K), [f"Cluster {i}" for i in range(K)])
+plt.ylabel("Ratio (%)")
+plt.title("Color Proportion by Cluster")
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.show()
 
 
 # 결과 출력
@@ -47,3 +69,4 @@ merged = np.hstack((img, res))
 cv2.imshow('Kmeans color', merged)
 cv2.waitKey(0)
 cv2.destroyWindow()
+
