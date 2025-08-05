@@ -45,28 +45,37 @@ print("== 대표 색상(BGR) 및 비율 ==")
 for i, (bgr, ratio) in enumerate(zip(center, ratios)):
     print(f'클러스터 {i}: 색상 BGR = {bgr}, 비율 = {ratio*100:.2f}%')
 
-# 색상 팔레트
-plt.figure(figsize=(8, 2))
-for i in range(K):
-    plt.bar(i, 1, color=center_rgb[i]/255.0)
-plt.xticks(range(K), [f"{int(ratios[i]*100)}%" for i in range(K)])
-plt.title("Color Palette (Proportions)")
-plt.axis('off')
+
+
+
+fig, axs = plt.subplots(3, 1, figsize=(8, 10))
+
+# 1. 원본 vs KMeans 이미지 출력
+merged = cv2.cvtColor(np.hstack((img, res)), cv2.COLOR_BGR2RGB)
+axs[0].imshow(merged)
+axs[0].axis('off')
+axs[0].set_title("Original Image vs KMeans Result")
+
+# 2. 색상 팔레트
+axs[1].bar(range(K), [1]*K, color=center_rgb/255.0, edgecolor='black')
+axs[1].set_xticks(range(K))
+axs[1].set_xticklabels([f"{int(r*100)}%" for r in ratios])
+
+# 퍼센트 텍스트를 각 색상 박스 중앙에 표시
+for i, ratio in enumerate(ratios):
+    axs[1].text(i, 0.5, f"{ratio*100:.1f}%", ha='center', va='center', fontsize=12, color='black', weight='bold')
+
+axs[1].set_title("Color Palette (Proportions)")
+axs[1].axis('off')
+
+# 3. 색상 비율 차트
+bars = axs[2].bar(range(K), ratios * 100, color=center_rgb/255.0)
+axs[2].set_xticks(range(K))
+axs[2].set_xticklabels([f"Cluster {i}" for i in range(K)])
+axs[2].set_ylabel("Ratio (%)")
+axs[2].set_title("Color Proportion by Cluster")
+axs[2].grid(axis='y', linestyle='--', alpha=0.5)
+
+# 전체 표시
+plt.tight_layout()
 plt.show()
-
-# 비율 막대 그래프
-plt.figure(figsize=(6, 4))
-bars = plt.bar(range(K), ratios * 100, color=center_rgb/255.0)
-plt.xticks(range(K), [f"Cluster {i}" for i in range(K)])
-plt.ylabel("Ratio (%)")
-plt.title("Color Proportion by Cluster")
-plt.grid(axis='y', linestyle='--', alpha=0.5)
-plt.show()
-
-
-# 결과 출력
-merged = np.hstack((img, res))
-cv2.imshow('Kmeans color', merged)
-cv2.waitKey(0)
-cv2.destroyWindow()
-
