@@ -75,7 +75,7 @@ def main():
         else:
             cv2.putText(frame, "학습 모드 (1~7키로 저장)", (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-
+ 
         # 공통 UI
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 255), 2)
         cv2.putText(frame, f"Mode: {mode.upper()}", (10, 460),
@@ -103,7 +103,7 @@ def main():
             x_train.append(avg_rgb)
             y_train.append(label)
             label_counter[label] += 1
-            print(f"🟢 {label_names[label]} 샘플 추가 → 총 {label_counter[label]}개")
+            print(f"{label_names[label]} 샘플 추가 → 총 {label_counter[label]}개")
 
     cap.release()
     cv2.destroyAllWindows()
