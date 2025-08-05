@@ -8,7 +8,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 # 군집화 갯수
-K = 4
+K = 6
 
 img = cv2.imread('../img/load_line.jpg')
 img = cv2.resize(img, (400,400))
