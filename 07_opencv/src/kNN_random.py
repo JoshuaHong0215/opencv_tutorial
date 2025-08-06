@@ -23,7 +23,7 @@ knn = cv2.ml.KNearest_create()
 knn.train(trainData, cv2.ml.ROW_SAMPLE, labels)
 # 예측 ---⑥
 #ret, results = knn.predict(newcomer)
-ret, results, neighbours, dist = knn.findNearest(newcomer, 5)#K=3
+ret, results, neighbours, dist = knn.findNearest(newcomer, 3)#K=3
 # 결과 출력
 print('ret:%s, result:%s, neighbours:%s, distance:%s' \
         %(ret, results, neighbours, dist))
