@@ -20,6 +20,9 @@ _, gray = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 contours, _ = cv2.findContours(gray, cv2.RETR_EXTERNAL, \
                                         cv2.CHAIN_APPROX_SIMPLE)[-2:]
 
+# 왼쪽에서 오른쪽 순서로 탐지
+contours = sorted(contours, key=lambda c: cv2.boundingRect(c)[0])
+
 for c in contours:
     # 컨투어를 감싸는 외접 사각형 구하기 ---⑤
     (x, y, w, h) = cv2.boundingRect(c)    
