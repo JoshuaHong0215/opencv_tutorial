@@ -11,7 +11,7 @@ dict_file = './plane_bike_dict.npy'         # 사전 객체 저장할 파일 이
 svm_model_file = './plane_bike_svm.xml'     # SVM 모델 객체 저장할 파일 이름 
 
 # 추출기와 BOW 객체 생 --- ②
-detector = cv2.xfeatures2d.SIFT_create()    # 추출기로 SIFT 생성 
+detector = cv2.SIFT_create()    # 추출기로 SIFT 생성 
 matcher = cv2.BFMatcher(cv2.NORM_L2)        # 매칭기로 BF 생성
 bowTrainer = cv2.BOWKMeansTrainer(dictionary_size) # KMeans로 구현된 BWOTrainer 생성
 bowExtractor = cv2.BOWImgDescriptorExtractor(detector, matcher) # 히스토그램 계산할 BOW추출기 생성
