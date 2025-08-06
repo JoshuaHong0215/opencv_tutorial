@@ -12,7 +12,7 @@ imgs = ['../img/aircraft.jpg','../img/jetstar.jpg',
         '../img/motorcycle.jpg', '../img/motorbike.jpg']
 
 # 특징 추출기(SIFT) 생성 ---②
-detector = cv2.xfeatures2d.SIFT_create()
+detector = cv2.SIFT_create()
 # BOW 추출기 생성 및 사전 로딩 ---③
 bowextractor = cv2.BOWImgDescriptorExtractor(detector, \
                                 cv2.BFMatcher(cv2.NORM_L2))
