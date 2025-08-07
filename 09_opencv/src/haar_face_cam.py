@@ -11,7 +11,7 @@ while cap.isOpened():
     if ret:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # 얼굴 검출    
-        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, \
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, \
                                         minNeighbors=5, minSize=(80,80))
         for(x,y,w,h) in faces:
             cv2.rectangle(img, (x,y), (x+w, y+h), (0, 255,0),2)
