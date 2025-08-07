@@ -12,8 +12,8 @@ MODEL_PATH = os.path.join('models', 'shape_predictor_68_face_landmarks.dat')
 predictor = dlib.shape_predictor(MODEL_PATH)
 
 cap = cv2.VideoCapture(0)
-cap.set(cv2.cv2.CAP_PROP_FRAME_WIDTH, 480)
-cap.set(cv2.cv2.CAP_PROP_FRAME_HEIGHT, 320)
+cap.set(cv2.cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 while cap.isOpened():
     ret, img = cap.read()
