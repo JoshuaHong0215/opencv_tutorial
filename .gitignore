@@ -16,7 +16,8 @@ __pycache__/
 # 특정 폴더 무시
 06_opencv/img*
 08_opencv/img/101_ObjectCategories*
-
+09_opencv/src/faces*
+09_opencv/src/faces/all_face.xml
 
 # 특정 파일 무시
 filebrowser.db  
