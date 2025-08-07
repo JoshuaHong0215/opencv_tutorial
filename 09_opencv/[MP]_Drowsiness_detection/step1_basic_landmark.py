@@ -3,6 +3,12 @@
 import cv2
 import dlib
 import os
+import time
+
+# FPS 측정
+start_time = time.time()
+frame_count = 0
+
 
 # 얼굴 검출기와 랜드마크 검출기 생성 --- ①
 detector = dlib.get_frontal_face_detector()
@@ -35,7 +41,17 @@ while cap.isOpened():
             part = shape.part(i)
             cv2.circle(img, (part.x, part.y), 2, (0, 0, 255), -1)
             # cv2.putText(img, str(i), (part.x, part.y), cv2.FONT_HERSHEY_PLAIN, 0.5,(255,255,255), 1, cv2.LINE_AA)
-    
+
+    # FPS 측정 및 표시
+    frame_count += 1
+    elapsed_time = time.time() - start_time
+    if elapsed_time > 1.0:
+         fps = frame_count / elapsed_time
+         cv2.putText(img, f"FPS: {fps:.1f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+         frame_count = 0
+         start_time = time.time()
+
+
     cv2.imshow("face landmark", img)
     if cv2.waitKey(1)== 27:
         break
