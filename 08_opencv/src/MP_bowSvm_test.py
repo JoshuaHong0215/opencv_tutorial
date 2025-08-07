@@ -14,7 +14,7 @@ bow_extractor.setVocabulary(dictionary)
 # ===== 3. 클래스 정의 =====
 categories = ['SAFE', 'WARNING_PERSON', 'WARNING_CAR']
 colors = [(0,255,0), (0,0,255), (0,165,255)]  # GREEN / RED / ORANGE
-warnings = ['안전', '⚠ 사람 경고!', '⚠ 차량 경고!']
+warnings = ['SAFE', 'WARNING_PERSON!', 'WARNING_CAR']
 
 # ===== 4. 영상 입력 설정 =====
 cap = cv2.VideoCapture('../img/drive.avi')  # 0은 웹캠 / 경로 지정시 동영상
