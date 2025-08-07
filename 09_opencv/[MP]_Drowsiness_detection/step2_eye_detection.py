@@ -5,6 +5,12 @@ import dlib
 import os
 import time
 
+
+# 눈 지정
+LEFT_EYE = [36, 37, 38, 39, 40, 41]
+RIGHT_EYE = [42, 43, 44, 45, 46, 47]
+
+
 # FPS 측정
 start_time = time.time()
 frame_count = 0
@@ -25,22 +31,22 @@ while cap.isOpened():
     ret, img = cap.read()
     if not ret:
         print('no frame.');break
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # 얼굴 영역 검출 --- ②
-    faces = detector(gray)
-    for rect in faces:
-        # 얼굴 영역을 좌표로 변환 후 사각형 표시 --- ③
-        x,y = rect.left(), rect.top()
-        w,h = rect.right()-x, rect.bottom()-y
-        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
     
-        # 얼굴 랜드마크 검출 --- ④
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = detector(gray)
+   
+    # 눈 영역 검출 
+    for rect in faces:
         shape = predictor(gray, rect)
-        for i in range(68):
-            # 부위별 좌표 추출 및 표시 --- ⑤
+
+        for i in  LEFT_EYE:
             part = shape.part(i)
-            cv2.circle(img, (part.x, part.y), 2, (0, 0, 255), -1)
-            # cv2.putText(img, str(i), (part.x, part.y), cv2.FONT_HERSHEY_PLAIN, 0.5,(255,255,255), 1, cv2.LINE_AA)
+            cv2.circle(img, (part.x, part.y), 2, (255, 0, 0), -1)
+
+        for i in  RIGHT_EYE:
+            part = shape.part(i)
+            cv2.circle(img, (part.x, part.y), 2, (255, 0, 0), -1)
+
 
     # FPS 측정 및 표시
     frame_count += 1
