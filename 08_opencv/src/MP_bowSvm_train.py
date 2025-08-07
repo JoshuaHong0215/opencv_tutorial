@@ -4,13 +4,13 @@ import os, glob, time
 
 # 각종 변수 선언---①
 startT = time.time()                        # 소요시간 측정을 위한 시간 저장
-categories =  ['SAFE', 'WARNING' ]  # 카테고리 이름 
+categories =  ['SAFE', 'WARNING_PERSON', 'WARNING_CAR']  # 카테고리 이름 
 dictionary_size = 50                        # 사전 크기, 클러스터 갯수 
 base_path = "./dataset/"  # 학습 이미지 기본 경로 
 dict_file = './safeWarning_dict.npy'         # 사전 객체 저장할 파일 이름 
 svm_model_file = './safeWarning_svm.xml'     # SVM 모델 객체 저장할 파일 이름 
 
-# 추출기와 BOW 객체 생 --- ②
+# 추출기와 BOW 객체 생성 --- ②
 detector = cv2.SIFT_create()    # 추출기로 SIFT 생성 
 matcher = cv2.BFMatcher(cv2.NORM_L2)        # 매칭기로 BF 생성
 bowTrainer = cv2.BOWKMeansTrainer(dictionary_size) # KMeans로 구현된 BWOTrainer 생성
