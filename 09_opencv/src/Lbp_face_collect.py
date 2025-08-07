@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os 
+import time
 
 # 변수 설정 ---①
 base_dir = './faces/'   # 사진 저장할 디렉토리 경로
@@ -9,7 +10,7 @@ cnt = 0                 # 사진 촬영 수
 
 # 얼굴 검출 분류기 생성 --- ②
 face_classifier = cv2.CascadeClassifier(\
-                    './data/haarcascade_frontalface_default.xml')
+                    '../data/haarcascade_frontalface_default.xml')
 
 # 사용자 이름과 번호를 입력 받아 디렉토리 생성 ---③
 name = input("Insert User Name(Only Alphabet):")
@@ -38,6 +39,11 @@ while cap.isOpened():
             cv2.putText(frame, str(cnt), (x, y), cv2.FONT_HERSHEY_COMPLEX, \
                              1, (0,255,0), 2)
             cnt+=1
+
+            # 수집 데이터 확장
+            if cnt % 10 == 0:
+                print(f'[INFO] {cnt}장 저장됨. 다른 각도/표정으로 바꿔주세요')
+
         else:
             # 얼굴 검출이 없거나 1이상 인 경우 오류 표시 ---⑥
             if len(faces) == 0 :
