@@ -22,3 +22,4 @@ __pycache__/
 filebrowser.db  
 filebrowser.exe
 08_opencv/img/drive.avi
+09_opencv/data/*.xml
