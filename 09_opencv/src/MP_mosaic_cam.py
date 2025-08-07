@@ -2,7 +2,7 @@ import cv2
 
 rate = 15               # 모자이크에 사용할 축소 비율 (1/rate)
 win_title = 'mosaic'    # 창 제목
-face_cascade = cv2.CascadeClassifier('../data/haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 cap = cv2.VideoCapture(0)
 # img = cv2.imread('../img/like_lenna.png')    # 이미지 읽기
