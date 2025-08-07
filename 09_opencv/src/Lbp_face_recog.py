@@ -48,7 +48,7 @@ while cap.isOpened():
         # 사용자 이름과 정확도 결과 출력 ---⑧
         txt, base = cv2.getTextSize(msg, cv2.FONT_HERSHEY_PLAIN, 1, 3)
         cv2.rectangle(frame, (x,y-base-txt[1]), (x+txt[0], y+txt[1]), \
-                    (0,255,255), -1)
+                    (0,0,0), -1)
         cv2.putText(frame, msg, (x, y), cv2.FONT_HERSHEY_PLAIN, 1, \
                     (200,200,200), 2,cv2.LINE_AA)
     cv2.imshow('Face Recognition', frame)
