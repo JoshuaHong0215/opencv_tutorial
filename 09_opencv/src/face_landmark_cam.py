@@ -28,7 +28,7 @@ while cap.isOpened():
             # 부위별 좌표 추출 및 표시 --- ⑤
             part = shape.part(i)
             cv2.circle(img, (part.x, part.y), 2, (0, 0, 255), -1)
-#            cv2.putText(img, str(i), (part.x, part.y), cv2.FONT_HERSHEY_PLAIN, 0.5,(255,255,255), 1, cv2.LINE_AA)
+            # cv2.putText(img, str(i), (part.x, part.y), cv2.FONT_HERSHEY_PLAIN, 0.5,(255,255,255), 1, cv2.LINE_AA)
     
     cv2.imshow("face landmark", img)
     if cv2.waitKey(1)== 27:
