@@ -5,8 +5,8 @@ win_title = 'mosaic'    # 창 제목
 cap = cv2.VideoCapture(0)
 # img = cv2.imread('../img/like_lenna.png')    # 이미지 읽기
 
-while True:
-    x,y,w,h = cv2.selectROI(win_title, img, False) # 관심영역 선택
+while cap.isOpened():
+    x,y,w,h = cv2.selectROI(win_title, cap, False) # 관심영역 선택
     if w and h:
         roi = img[y:y+h, x:x+w]   # 관심영역 지정
         roi = cv2.resize(roi, (w//rate, h//rate)) # 1/rate 비율로 축소
