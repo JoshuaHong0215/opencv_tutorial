@@ -15,8 +15,10 @@ __pycache__/
 
 # 특정 폴더 무시
 06_opencv/img*
+08_opencv/img/101_ObjectCategories*
 
 
 # 특정 파일 무시
 filebrowser.db  
 filebrowser.exe
+08_opencv/img/drive.avi
