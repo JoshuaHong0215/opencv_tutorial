@@ -6,7 +6,8 @@ class TrafficMonitor:
         self.model = YOLO('yolo11n.pt')
         self.traffic_classes = {
             0: 'person', 2: 'car', 3: 'motorcycle', 
-            5: 'bus', 7: 'truck', 9: 'traffic_light'
+            5: 'bus', 7: 'truck', 9: 'traffic_light',
+            32 : 'baseball ball'
         }
         self.stats = {'total_detections': 0, 'by_class': {}}
     
@@ -28,6 +29,10 @@ class TrafficMonitor:
                     frame_stats['pedestrians'] += 1
                 elif class_id == 9:  # traffic_light
                     frame_stats['signals'] += 1
+                
+                # 추가
+                elif class_id == 32:
+                    frame_stats['baseball ball'] += 1
                 
                 self.stats['by_class'][class_name] = \
                     self.stats['by_class'].get(class_name, 0) + 1
