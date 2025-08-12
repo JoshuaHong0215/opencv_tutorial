@@ -19,7 +19,7 @@ while True:
     # 6) YOLO 추론 (유효한 프레임일 때만)
     results = model(frame, verbose=False)
 
-    # 7) 시각화용 프레임 생성
+    # 7) 시각화용 프레임 생성(plot메소드에 line_width파라미터가 있어서 이걸로 굵기 조절 가능)
     annotated = results[0].plot(line_width=2)  # numpy array(BGR)
 
     # 8) 화면 출력
